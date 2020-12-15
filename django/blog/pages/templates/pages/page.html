@@ -1,0 +1,16 @@
+{% extends 'layouts/layout.html' %}
+
+{% block titulo %} {{page.titulo}} {% endblock  %}
+
+{% block contenido %}
+    <h1 class="titulo">{{page.titulo}}</h1>
+    <span class="fecha">{{page.fecha_creacion}}</span>
+    <p class="texto">
+        {% comment %} 
+            Utilizando la tuberia 'safe' lo que hay en el 
+            contenido lo va a interpretar como HTML y no 
+            como texto plano 
+        {% endcomment %}
+        {{page.contenido|safe}}
+    </p>
+{% endblock  %}

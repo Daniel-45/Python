@@ -1,0 +1,23 @@
+{% extends 'layouts/layout.html' %}
+
+{% block titulo %} {{titulo}} {% endblock  %}
+
+{% block contenido %}
+    <h1>{{titulo}}</h1>
+
+    {% comment %} Mostrar errors en el formulario {% endcomment %}
+    <div class="error">
+        {{formulario_registro.errors}}  
+    </div>
+    
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% comment %} {{formulario_registro.as_p}} {% endcomment %}
+
+        {% for field in formulario_registro %}
+            <label>{{field.label}}</label>
+            {{field}}
+        {% endfor %}
+        <input type="submit" value="Registrar" />
+    </form>
+{% endblock  %}

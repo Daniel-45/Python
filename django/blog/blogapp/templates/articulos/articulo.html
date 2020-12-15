@@ -1,0 +1,21 @@
+{% extends 'layouts/layout.html' %}
+
+{% block titulo %} {{articulo.titulo}} {% endblock  %}
+
+{% block contenido %}
+    {% if articulo.imagen != 'null' and articulo.imagen.url|length >= 1 %}
+        <div id="imagen-articulo">
+            <img src="{{articulo.imagen.url}}">
+        </div>
+    {% endif %}
+    <h2 class="titulo">{{articulo.titulo}}</h2>
+    <span class="fecha">{{articulo.fecha_creacion}}</span>
+    <p class="texto">
+        {% comment %} 
+            Utilizando la tuberia 'safe' lo que hay en el 
+            contenido lo va a interpretar como HTML y no 
+            como texto plano 
+        {% endcomment %}
+        {{articulo.contenido|safe}}
+    </p>
+{% endblock  %}

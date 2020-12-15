@@ -1,0 +1,40 @@
+{% comment %} Mostrar artículos {% endcomment %}
+    {% for articulo in articulos %}
+        <article class="articulo-item">
+            {% if articulo.imagen != 'null' and articulo.imagen.url|length >= 1 %}
+                <div class="imagen">
+                    <img src="{{articulo.imagen.url}}">
+                </div>
+            {% endif %}
+
+            <div class="datos">
+                <h2>
+                    <a href="{% url 'articulo' articulo.id %}">{{articulo.titulo}}</a>
+                </h2>
+                <p class="categorias">
+                    {% for categoria in articulo.categorias.all %}
+                        <a href="#">{{categoria}}</a>
+                        {% comment %} 
+                            Si un artículo pertenece a más de una categoría
+                            separar con un guión las categorías en la vista
+                            - 'forloop.counter' saca el número del índice
+                            - 'articulo.categorias.all|length' número total de categorías
+                        {% endcomment %}
+                        {% if forloop.counter < articulo.categorias.all|length %}
+                            {{'-'}}
+                        {% endif %}
+                    {% endfor %}
+                </p>
+                <span class="fecha">
+                    {{articulo.usuario.first_name}} {{articulo.usuario.last_name}}
+                    |
+                    {{articulo.fecha_creacion}}
+                </span>
+                {% comment %} 
+                    La tuberia 'safe' para que imprima el HTML de la base de datos 
+                {% endcomment %}
+                <p class="texto">{{articulo.contenido|safe}}</p>
+            </div>
+            <div class="clear-fix"></div>
+        </article>
+    {% endfor %}

@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block titulo %}Coche{% endblock titulo %}
+
+{% block contenido %}
+<h1>Coche</h1>
+<div class="datos">
+    <p>
+        <span class="datos-coche">
+            {{coche.1}} {{coche.2}}
+            |
+            {{coche.3}} €
+        </span>
+    </p>
+</div>
+{% endblock contenido %}

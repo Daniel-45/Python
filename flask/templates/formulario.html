@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block titulo %}Formulario{% endblock titulo %}
+
+{% block contenido %}
+    {% if coche %}
+        <h1>Editar coche: {{coche.1}} {{coche.2}} | {{coche.3}} €</h1>
+    {% else %}
+        <h1>Insertar coche</h1>
+    {% endif %}
+
+    <form action="" method="POST" id="formulario">
+        <label for="marca">Marca</label>
+        <input 
+            type="text" 
+            name="marca" 
+            {% if coche %} value="{{coche.1}}" {% endif %}
+        />
+
+        <label for="modelo">Modelo</label>
+        <input 
+            type="text" 
+            name="modelo" 
+            {% if coche %} value="{{coche.2}}" {% endif %}
+        />
+
+        <label for="precio">Precio</label>
+        <input 
+            type="number" 
+            name="precio" 
+            {% if coche %} value="{{coche.3}}" {% endif %}
+        />
+
+        {% if coche %}
+            <input type="submit" value="Editar" />
+        {% else %}
+            <input type="submit" value="Insertar" />
+        {% endif %}
+    <form>
+{% endblock contenido %}

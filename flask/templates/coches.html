@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block titulo %}Coches{% endblock titulo %}
+
+{% block contenido %}
+    <h1>Listado de coches</h1>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message alert alert-succes">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% for coche in coches %}
+        <article class="coche-item">
+            <div class="datos">
+                <p>
+                    <span class="datos-coche">
+                        {{coche.1}} {{coche.2}}
+                        |
+                        {{coche.3}} €
+                        |
+                    </span>
+                     <a href="{{url_for('coche', coche_id=coche.0)}}">Detalles</a>
+                </p>
+                <p>
+                    <a 
+                        href="{{url_for('editar_coche', coche_id=coche.0)}}" 
+                        class="btn btn-success"
+                    >Editar</a>
+                    <a 
+                        href="{{url_for('eliminar_coche', coche_id=coche.0)}}" 
+                        class="btn btn-danger"
+                    >Eliminar</a>
+                </p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock contenido %}

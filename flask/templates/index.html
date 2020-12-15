@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block titulo %}Index{% endblock titulo %}
+
+{% block contenido %}
+    {# {{{super()}}} #}
+    <h1>Inicio</h1>
+    {% if nombre == 'Daniel' %}
+        <h3>Hola, {{nombre}}</h3>
+    {% endif %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message alert alert-succes">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <p class="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+{% endblock contenido %}

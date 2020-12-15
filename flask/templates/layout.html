@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Python - Flask{% endblock  %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+
+<body>
+    <header>
+        <div id="titulo-header">
+            <h1>Sitio web con Flask</h1>
+        </div>
+    </header>
+    <div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Inicio</a>
+                </li>
+
+                <li>
+                    <a href="{{url_for('insertar_coche')}}">Formulario</a>
+                </li>
+
+                <li>
+                    <a href="{{url_for('coches')}}">Coches</a>
+                </li>
+
+                <li>
+                    <a href="{{url_for('informacion')}}">Información</a>
+                </li>
+
+                <li>
+                    <a href="{{url_for('contacto')}}">Contacto</a>
+                </li>
+            </ul>
+        <nav>
+    </div>
+    <section id="contenido">
+        {% block contenido %}
+        <h1>Máster en Ptyhon - Flask</h1>
+
+        {% endblock contenido %}
+    </section>
+</body>
+
+    <footer>
+        <p>
+            Python - &copy; Daniel Pompa Pareja 
+            <span id="fecha">
+                Fecha: {{now.day}} - {{now.month}} - {{now.year}}
+            </span>
+        </p>
+    </footer>
+</html>
